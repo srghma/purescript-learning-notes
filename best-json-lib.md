@@ -2,8 +2,8 @@
 
 https://pursuit.purescript.org/packages/purescript-generics-rep/ - just gives Generic class `derive instance genericSimpleBounded :: G.Generic SimpleBounded _`
 
-```
 **https://pursuit.purescript.org/packages/purescript-foreign-generic/** - `import Foreign.Class (class Decode, class Encode)`
+```
   Foreign.Class
   Foreign.Generic
   Foreign.Generic.Class
@@ -12,8 +12,10 @@ https://pursuit.purescript.org/packages/purescript-generics-rep/ - just gives Ge
   Foreign.JSON (`parseJSON :: String -> F Foreign`, `decodeJSONWith :: forall a. (Foreign -> F a) -> String -> F a`)
   Foreign.NullOrUndefined
   NOTE: for JSON it's better to use https://github.com/purescript-contrib/purescript-argonaut/ (better errors)
+```
 
 depends on https://pursuit.purescript.org/packages/purescript-foreign
+```
   Foreign
   Foreign.Index
   Foreign.Keys
