@@ -1,3 +1,6 @@
+https://github.com/purescript/purescript/issues/2218
+https://github.com/purescript-contrib/purescript-aff/issues/187#issuecomment-569527829
+
 http://an-pro.org/posts/webdriver-cookbook.html
 
 -----------------
