@@ -2,10 +2,7 @@ http://an-pro.org/posts/webdriver-cookbook.html
 
 -----------------
 
-feature_tests_dev_feature_tests_interactive
-
------------------
-
+```purs
 :pa
 import Prelude
 import Test.Main
@@ -42,7 +39,6 @@ runInteractively spec = launchAff_ $ configAff >>= \config -> runFeatureTest spe
 runInteractively do
   get "http://google.com/ncr"
 
-
 :pa
 import Prelude
 import Effect
@@ -57,3 +53,4 @@ do
   log "asdf"
   delay (Milliseconds 5000.0)
   log "asdf2"
+```
