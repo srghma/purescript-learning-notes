@@ -59,7 +59,7 @@ THOUGH doesnt implement enc/dec for https://pursuit.purescript.org/packages/pure
 
 ## **https://github.com/garyb/purescript-codec-argonaut**
 
-alreanative to purescript-argonaut-codecs
+alternative to purescript-argonaut-codecs
 
 ```purescript
 newtype Star f a b = Star (a -> f b)
