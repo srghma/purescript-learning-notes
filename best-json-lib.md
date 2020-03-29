@@ -45,9 +45,11 @@ NOTE: not Foreign, but you can convert Foreign to JSON using unsafeCoerce
 
 ## **https://github.com/paf31/purescript-foreign-generic** - generic based, Foreign
 
-is better, because funciton based, implements generic JSON decoder for records too
+is better than call based, because function and profunctor based are not forced to decode/encode the same way
 
-THOUGH doesnt implement for https://pursuit.purescript.org/packages/purescript-variant/
+implements generic JSON decoder for records too
+
+THOUGH doesnt implement enc/dec for https://pursuit.purescript.org/packages/purescript-variant/
 
 (https://github.com/paf31/purescript-foreign-generic/blob/46f09996bd54efc146bc1725783789dbac7d6a5b/src/Foreign/Generic.purs#L57-L75)
 
