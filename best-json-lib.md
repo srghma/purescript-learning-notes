@@ -34,7 +34,7 @@ https://github.com/justinwoo/purescript-howto-foreign-generic
 
 ## **https://github.com/justinwoo/purescript-simple-json** - generic based, Foreign
 
-## **https://github.com/purescript-contrib/purescript-argonaut-codecs** - not generic based, JSON
+## **https://github.com/purescript-contrib/purescript-argonaut-codecs** - not generic based (but can be used with purescript-argonaut-generic), JSON
 
 (https://github.com/purescript-contrib/purescript-argonaut-core/blob/v4.0.1/src/Data/Argonaut/Core.purs#L52-L52)
 
