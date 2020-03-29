@@ -72,8 +72,8 @@ turns functor f to profunctor
 
 ------------------------------------------------------
 
-similar `ReaderT` to but `f` and `a` are swapped `ReaderT r m a = ReaderT (r -> m a)`
-since r is in first position - it's impossible to define profunctor for ReaderT
+similar to `ReaderT` but `f` and `a` are swapped in `ReaderT r m a = ReaderT (r -> m a)`
+since `r` is in first position - it's impossible to define profunctor for `ReaderT`
 -}
 
 data GCodec m n a b = GCodec (m b) (Star n a b)
