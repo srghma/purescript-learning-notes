@@ -74,7 +74,7 @@ turns functor f to profunctor
 
 ------------------------------------------------------
 
-similar to `ReaderT` but `f` and `a` are swapped in `ReaderT r m a = ReaderT (r -> m a)`
+similar to `ReaderT r m a = ReaderT (r -> m a)` but first two args are swapped
 since `r` is in first position - it's impossible to define profunctor for `ReaderT`
 -}
 
