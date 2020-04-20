@@ -18,8 +18,14 @@ type Exists f = ∀ r. (∀ a. f a -> r) -> r
 
 newtype Showable = Showable (forall r. (forall a. Show a => a -> r) -> r)
 
-mkShowable :: ∀ a. Show a => a -> Showable
-mkShowable a = Showable (_ $ a)
+mkShowable :: forall a. Show a => a -> Showable
+mkShowable a = Showable \k -> k a
+
+unShowable :: forall r. (forall a. Show a => a -> r) -> Showable -> r
+unShowable k1 (Showable k2) = k2 k1
+
+test1 = mkShowable 42
+test2 = unShowable (\a -> show a) test1
 
 instance showShowable :: Show Showable where
   show (Showable a) = a show
