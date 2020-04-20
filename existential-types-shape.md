@@ -63,22 +63,23 @@ shapes = [circle 2.4, rectangle 3.1 4.4, square 2.1]
 ```purs
 module Halogen.MDL.Button where
 
+import Data.Foldable
 import Effect
 import Effect.Console
 import Prelude
-import Data.Foldable
 import Unsafe.Coerce
 
 class Shape_ a where
   perimeter :: a -> Number
   area      :: a -> Number
 
-type Shape_Dict a = { myClassFunc :: a -> String }
+data Shape = Shape (forall r. (forall a. Shape_ a => a -> r) -> r)
 
-myClassDict :: forall a . MyClass a => MyClassDict a
-myClassDict = { myClassFunc }
+mkShape :: forall a. Shape_ a => a -> Shape
+mkShape a = Shape \k -> k a
 
-data Shape = Shape (forall a . Shape_ a => a)
+unShape :: forall r. (forall a. Shape_ a => a -> r) -> Shape -> r
+unShape k1 (Shape k2) = k2 k1
 
 type Radius = Number
 type Side   = Number
@@ -103,28 +104,28 @@ instance shape_Square :: Shape_ Square where
   area      (Square s) = s*s
 
 instance shape_Shape :: Shape_ Shape where
-  perimeter (Shape shape) = perimeter shape
-  area      (Shape shape) = area      shape
+  perimeter (Shape shapeFn) = shapeFn perimeter
+  area      (Shape shapeFn) = shapeFn area
 
 
 --
 -- Smart constructor
 --
 
--- circle :: Radius -> Shape
--- circle r = Shape (Circle r)
+circle :: Radius -> Shape
+circle r = mkShape (Circle r)
 
--- rectangle :: Side -> Side -> Shape
--- rectangle x y = Shape (Rectangle x y)
+rectangle :: Side -> Side -> Shape
+rectangle x y = mkShape (Rectangle x y)
 
--- square :: Side -> Shape
--- square s = Shape (Square s)
+square :: Side -> Shape
+square s = mkShape (Square s)
 
--- shapes :: Array Shape
--- shapes = [circle 2.4, rectangle 3.1 4.4, square 2.1]
+shapes :: Array Shape
+shapes = [circle 2.4, rectangle 3.1 4.4, square 2.1]
 
--- main :: Effect Unit
--- main = do
---   log testCorrect1 -- MyClass Int
---   log testCorrect2 -- MyClass Array: MyClass String, MyClass String
+main :: Effect Unit
+main = do
+  -- area = 18.086399999999998, perimeter = 15.072 | area = 13.640000000000002, perimeter = 15.0 | area = 4.41, perimeter = 8.4
+  log $ intercalate " | " $ shapes <#> unShape (\s -> "area = " <> show (area s) <> ", perimeter = " <> show (perimeter s))
 ```
