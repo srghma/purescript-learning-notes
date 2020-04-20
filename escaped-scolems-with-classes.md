@@ -7,7 +7,6 @@ module Halogen.MDL.Button where
 import Effect
 import Effect.Console
 import Prelude
-import Type.Proxy
 import Data.Foldable
 import Unsafe.Coerce
 
@@ -25,8 +24,8 @@ instance myClassArrayString :: MyClass a => MyClass (Array a) where
 
 type MyClassDict a = { myClassFunc :: a -> String }
 
-mkMyClassDict :: forall a . MyClass a => Proxy a -> MyClassDict a
-mkMyClassDict _ = { myClassFunc }
+myClassDict :: forall a . MyClass a => MyClassDict a
+myClassDict = { myClassFunc }
 
 ------------------------------------
 
@@ -40,7 +39,7 @@ mkFooX
    . MyClass hiddenContent
   => (Foo content hiddenContent)
   -> (FooX content)
-mkFooX a@(Foo { hiddenContent }) = unsafeCoerce { value: a, myClassDict: mkMyClassDict (Proxy :: Proxy hiddenContent) }
+mkFooX a@(Foo { hiddenContent }) = unsafeCoerce { value: a, myClassDict: (myClassDict :: MyClassDict hiddenContent) }
 
 unFooX
   :: forall content a
@@ -90,7 +89,6 @@ var Data_Foldable = require("../Data.Foldable/index.js");
 var Data_Functor = require("../Data.Functor/index.js");
 var Data_Monoid = require("../Data.Monoid/index.js");
 var Effect_Console = require("../Effect.Console/index.js");
-var Type_Proxy = require("../Type.Proxy/index.js");
 var Foo = function (x) {
     return x;
 };
@@ -114,23 +112,21 @@ var myClassInt = new MyClass(function (v) {
 var myClassFunc = function (dict) {
     return dict.myClassFunc;
 };
+var myClassDict = function (dictMyClass) {
+    return {
+        myClassFunc: myClassFunc(dictMyClass)
+    };
+};
 var myClassArrayString = function (dictMyClass) {
     return new MyClass(function (xs) {
         return "MyClass Array: " + Data_Foldable.intercalate(Data_Foldable.foldableArray)(Data_Monoid.monoidString)(", ")(Data_Functor.map(Data_Functor.functorArray)(myClassFunc(dictMyClass))(xs));
     });
 };
-var mkMyClassDict = function (dictMyClass) {
-    return function (v) {
-        return {
-            myClassFunc: myClassFunc(dictMyClass)
-        };
-    };
-};
 var mkFooX = function (dictMyClass) {
     return function (v) {
         return {
             value: v,
-            myClassDict: mkMyClassDict(dictMyClass)(Type_Proxy["Proxy"].value)
+            myClassDict: myClassDict(dictMyClass)
         };
     };
 };
@@ -161,7 +157,7 @@ var main = function __do() {
 module.exports = {
     myClassFunc: myClassFunc,
     MyClass: MyClass,
-    mkMyClassDict: mkMyClassDict,
+    myClassDict: myClassDict,
     Foo: Foo,
     mkFooX: mkFooX,
     unFooX: unFooX,
