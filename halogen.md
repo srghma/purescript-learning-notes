@@ -1,3 +1,4 @@
+```purs
 module Halogen.VDom.Machine
   ( Machine
   , Step'(..)
@@ -55,4 +56,4 @@ halt = coerce $ mkEffectFn1 \(Step _ s _ k) → runEffectFn1 k s
   where
   coerce ∷ ∀ s. EffectFn1 (Step' a b s) Unit → EffectFn1 (Step a b) Unit
   coerce = unsafeCoerce
-
+```

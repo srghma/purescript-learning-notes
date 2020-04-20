@@ -1,3 +1,10 @@
+# THIS IS NOT WORKING
+
+because purescript repl doesnt support `a <- someAff` ()
+
+-------------------
+TODO: wait for
+
 https://github.com/purescript/purescript/issues/2218
 https://github.com/purescript-contrib/purescript-aff/issues/187#issuecomment-569527829
 
