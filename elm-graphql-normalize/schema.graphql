@@ -1,0 +1,169 @@
+# source: http://elm-graphql-normalize.herokuapp.com/
+# timestamp: Sat Apr 25 2020 09:07:36 GMT+0300 (Eastern European Summer Time)
+
+schema {
+  query: RootQueryType
+}
+
+"""One of the films in the Star Wars Trilogy"""
+enum _Episode {
+  """Released in 1980."""
+  empire
+
+  """Released in 1983."""
+  jedi_
+
+  """Released in 1977."""
+  _newhope
+}
+
+"""A humanoid creature in the Star Wars universe."""
+type _human implements Character {
+  """Which movies they appear in."""
+  appearsIn: [_Episode!]!
+
+  """The friends of the human, or an empty list if they have none."""
+  friends: [Character!]!
+
+  """The home planet of the human, or null if unknown."""
+  homePlanet: String
+
+  """The ID of the human."""
+  id: ID!
+
+  """The name of the human."""
+  name: String!
+}
+
+type Cat {
+  id: CatId!
+}
+
+scalar CatId
+
+"""A character in the Star Wars Trilogy"""
+interface Character {
+  """Which movies they appear in."""
+  appearsIn: [_Episode!]!
+
+  """The friends of the character, or an empty list if they have none."""
+  friends: [Character!]!
+
+  """The ID of the character."""
+  id: ID!
+
+  """The name of the character."""
+  name: String!
+}
+
+"""A union alternative to the character interface for learning purposes."""
+union CharacterUnion = _human | Droid
+
+input CircularOne {
+  circularTwo: CircularTwo
+}
+
+input CircularTwo {
+  circularOne: CircularOne
+}
+
+"""
+A union with fields of the same name but different types. For testing ambiguous
+union selections, see https://facebook.github.io/graphql/draft/#example-54e3d.
+"""
+union ConflictingTypesUnion = Dog | Cat | MaybeId | ListId
+
+type Dog {
+  id: DogId!
+}
+
+scalar DogId
+
+"""A mechanical creature in the Star Wars universe."""
+type Droid implements Character {
+  """Which movies they appear in."""
+  appearsIn: [_Episode!]!
+
+  """The friends of the droid, or an empty list if they have none."""
+  friends: [Character!]!
+
+  """The ID of the droid."""
+  id: ID!
+
+  """The name of the droid."""
+  name: String!
+
+  """The primary function of the droid."""
+  primaryFunction: String
+}
+
+input Greeting {
+  language: Language
+  name: String!
+  options: GreetingOptions
+}
+
+input GreetingOptions {
+  prefix: String
+}
+
+enum Language {
+  """English"""
+  EN
+
+  """Spanish"""
+  ES
+
+  """Norwegian"""
+  NO
+}
+
+type ListId {
+  id: [DogId]
+}
+
+type MaybeId {
+  id: DogId
+}
+
+input Recursive {
+  recursive: Recursive
+}
+
+input ReservedWord {
+  type: String!
+}
+
+type RootQueryType {
+  circularInput(
+    """Test circular input."""
+    input: CircularOne!
+  ): String
+  conflictingTypesUnion: ConflictingTypesUnion!
+  _droid(
+    """ID of the droid."""
+    _iD: ID!
+  ): Droid
+  greet(input: Greeting!): String!
+  hero(
+    """
+    If omitted, returns the hero of the whole saga. If provided, returns the hero of that particular episode.
+    """
+    episode: _Episode
+  ): Character!
+  heroUnion(
+    """
+    If omitted, returns the hero of the whole saga. If provided, returns the hero of that particular episode.
+    """
+    episode: _Episode
+  ): CharacterUnion
+  human(
+    """ID of the human."""
+    id: ID!
+  ): _human
+  recursiveInput(
+    """Test recursive input."""
+    input: Recursive!
+  ): String
+  type(input: ReservedWord): String!
+}
