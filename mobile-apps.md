@@ -33,6 +33,25 @@ you can reuse packages from npm, CocoaPods, and Gradle (builer, JVM, Android, C+
 
 React Native requires you to build bridge APIs. NativeScript directly injects iOS and Android APIs into JavaScript Virtual Machines.
 
+------------
+
+how react-nativescript is working
+
+https://github.com/shirakaba/react-nativescript/blob/d617cab1e373e4b217c28ebcf7e18896dd5a694f/react-nativescript/src/client/HostConfig.ts#L456-L469
+
+https://github.com/shirakaba/react-nativescript/blob/d617cab1e373e4b217c28ebcf7e18896dd5a694f/react-nativescript/src/client/ReactNativeScript.ts#L168
+
+how nativescript-angular is working
+
+https://github.com/NativeScript/nativescript-angular/blob/35ca4fa681389390480c74e330bc93a074dbe02e/nativescript-angular/directives/action-bar.ts#L102
+
+https://github.com/NativeScript/nativescript-angular/blob/35ca4fa681389390480c74e330bc93a074dbe02e/nativescript-angular/directives/action-bar.ts#L82
+
+https://github.com/NativeScript/nativescript-angular/blob/e0d19b3749050d09dfee0829d5fa85f53e16b922/tests/app/main.ts#L123
+
+
+how xml is parsed https://github.com/NativeScript/NativeScript/blob/bd9828a0367b30bd332070c92a5f2f921461c5a8/nativescript-core/ui/builder/builder.ts#L572-L586
+
 # react native
 
 doesn’t use a WebView-based wrapper
@@ -55,29 +74,6 @@ how to create custom renderer
 https://github.com/facebook/react/blob/master/packages/react-reconciler/README.md
 
 https://medium.com/@agent_hunt/introduction-to-react-native-renderers-aka-react-native-is-the-java-and-react-native-renderers-are-828a0022f433
-
-------------
-
-how react-nativescript is working
-
-https://github.com/shirakaba/react-nativescript/blob/d617cab1e373e4b217c28ebcf7e18896dd5a694f/react-nativescript/src/client/HostConfig.ts#L456-L469
-
-https://github.com/shirakaba/react-nativescript/blob/d617cab1e373e4b217c28ebcf7e18896dd5a694f/react-nativescript/src/client/ReactNativeScript.ts#L168
-
-how nativescript-angular is working
-
-https://github.com/NativeScript/nativescript-angular/blob/35ca4fa681389390480c74e330bc93a074dbe02e/nativescript-angular/directives/action-bar.ts#L102
-
-https://github.com/NativeScript/nativescript-angular/blob/35ca4fa681389390480c74e330bc93a074dbe02e/nativescript-angular/directives/action-bar.ts#L82
-
-https://github.com/NativeScript/nativescript-angular/blob/e0d19b3749050d09dfee0829d5fa85f53e16b922/tests/app/main.ts#L123
-
-
-how xml is parsed https://github.com/NativeScript/NativeScript/blob/bd9828a0367b30bd332070c92a5f2f921461c5a8/nativescript-core/ui/builder/builder.ts#L572-L586
-
-------------
-
-Why xml is required?
 
 # ionic
 
