@@ -31,15 +31,21 @@ https://github.com/zeit/next.js/blob/7dbdf1d89e/packages/next/client/page-loader
 # how page is loaded
 
 1. https://github.com/zeit/next.js/blob/42a328f3e44a560d45821a582beb257fdeea10af/packages/next/client/link.tsx#L204
-2. https://github.com/zeit/next.js/blob/canary/packages/next/next-server/lib/router/router.ts#L344
+
+2. https://github.com/vercel/next.js/blob/f92571d502877ecc5d85307e9b97de5ccf68af09/packages/next/next-server/lib/router/router.ts#L363-L377
+
 3. component is fetched here https://github.com/zeit/next.js/blob/42a328f3e44a560d45821a582beb257fdeea10af/packages/next/next-server/lib/router/router.ts#L604
+
 4. how `this.pageLoader.loadPage(route)` is done
 
 4.1 event handler is registered https://github.com/zeit/next.js/blob/42a328f3e44a560d45821a582beb257fdeea10af/packages/next/client/page-loader.js#L205
+
 4.2 script is added to the page, error is emitted https://github.com/zeit/next.js/blob/42a328f3e44a560d45821a582beb257fdeea10af/packages/next/client/page-loader.js#L266
+
 4.3 OR
 
 registerPage is called https://github.com/zeit/next.js/blob/42a328f3e44a560d45821a582beb257fdeea10af/packages/next/client/page-loader.js#L272
+
 here https://github.com/zeit/next.js/blob/7dbdf1d89eef004170d8f2661b4b3c299962b1f8/packages/next/client/index.js#L58
 
 4.4. MEAT!!!!
@@ -48,7 +54,9 @@ here https://github.com/zeit/next.js/blob/7dbdf1d89eef004170d8f2661b4b3c299962b1
 
 PUSH IS REPLACED WITH REGISTER!!
 
-rendered hwere https://github.com/zeit/next.js/blob/b88f20c90bf4659b8ad5cb2a27956005eac2c7e8/packages/next/build/entries.ts#L131
+rendered here https://github.com/zeit/next.js/blob/b88f20c90bf4659b8ad5cb2a27956005eac2c7e8/packages/next/build/entries.ts#L131
+
+plugin here https://github.com/vercel/next.js/blob/b88f20c90bf4659b8ad5cb2a27956005eac2c7e8/packages/next/build/webpack/loaders/next-client-pages-loader.ts
 
 
 ------------------
