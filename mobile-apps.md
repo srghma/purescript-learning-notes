@@ -88,7 +88,11 @@ test in browser
 jit bitecode for android, WKWebView browser for ios (too with JIT conversion of JS code down to machine code)
 
 # other
+
 http://www.rubymotion.com/
+
 https://tabris.com/
 
 framework7 - https://github.com/polendri/purescript-halogen-framework7/blob/master/src/Framework7.purs
+
+weex
